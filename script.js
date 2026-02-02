@@ -73,3 +73,51 @@ function updateCounters() {
   completedSpan.textContent = completed;
   pendingSpan.textContent = total - completed;
 }
+
+/*************************************************
+ * LOCAL STORAGE - GUARDAR
+ *************************************************/
+function updateStorage() {
+  const products = [];
+
+  document.querySelectorAll("#product-list li").forEach(li => {
+    const text = li.firstChild.textContent;
+    const [name, qty] = text.replace(")", "").split(" (");
+
+    products.push({
+      name: name,
+      quantity: Number(qty),
+      bought: li.classList.contains("comprado")
+    });
+  });
+
+  localStorage.setItem("products", JSON.stringify(products));
+}
+
+/*************************************************
+ * LOCAL STORAGE - CARGAR
+ *************************************************/
+function loadStorage() {
+  const data = JSON.parse(localStorage.getItem("products")) || [];
+
+  data.forEach(p => {
+    createProduct(p.name, p.quantity);
+    const lastItem = productList.lastChild;
+
+    if (p.bought) {
+      lastItem.classList.add("comprado");
+    }
+  });
+
+  updateCounters();
+}
+
+/*************************************************
+ * ACTUALIZA STORAGE EN CADA CAMBIO
+ *************************************************/
+// Sobrescribimos eventos para guardar cambios
+productList.addEventListener("click", updateStorage);
+form.addEventListener("submit", updateStorage);
+
+// Aqui cargamos productos al iniciar la página
+loadStorage();
