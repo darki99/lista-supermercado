@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Supermercado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado principal -->
+  <header>
+    <h1>Lista de Supermercado</h1>
+  </header>
+
+  <main>
+    <!-- Sección del formulario -->
+    <section class="card">
+      <form id="product-form">
+        <!-- Nombre del producto -->
+        <input type="text" id="product-name" placeholder="Producto">
+
+        <!-- Cantidad -->
+        <input type="number" id="product-quantity" placeholder="Cantidad">
+
+        <!-- Botón -->
+        <button type="submit">Agregar</button>
+
+        <!-- Mensajes de error -->
+        <p id="error-message"></p>
+      </form>
+    </section>
+
+    <!-- Lista dinámica -->
+    <section>
+      <ul id="product-list"></ul>
+    </section>
+
+    <!-- Contadores -->
+    <section id="counters">
+      <p>Total: <span id="total">0</span></p>
+      <p>Comprados: <span id="completed">0</span></p>
+      <p>Pendientes: <span id="pending">0</span></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto académico - JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
